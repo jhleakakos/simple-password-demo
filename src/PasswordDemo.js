@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
     lowercaseLetters,
@@ -8,28 +8,35 @@ import {
 } from './utils/letters';
 
 const PasswordDemo = () => {
-    const [password, setPassword] = useState('');
     const checkCharacters = [
         ...lowercaseLetters,
         ...uppercaseLetters,
         ...numbers,
         ...specialCharacters
     ];
+
+    const [password, setPassword] = useState('');
+    const [cracked, setCracked] = useState(false);
+
+    useEffect(() => setCracked(false), [password]);
+
     const crackPassword = () => {
         const pwdLength = password.length;
 
         for (let firstLetter of checkCharacters) {
+            let passwordGuess = firstLetter;
+            if (passwordGuess === password) return setCracked(true);
+
             for (let secondLetter of checkCharacters) {
+                passwordGuess = `${firstLetter}${secondLetter}`;
+                if (passwordGuess === password) return setCracked(true);
+
                 for (let thirdLetter of checkCharacters) {
-                    let passwordGuess = `${firstLetter}${secondLetter}${thirdLetter}`;
-                    if (passwordGuess === password) {
-                        return console.log(`Your password is: ${passwordGuess}`);
-                    }
+                    passwordGuess = `${firstLetter}${secondLetter}${thirdLetter}`;
+                    if (passwordGuess === password) return setCracked(true);
                 }
             }
         }
-
-        console.log("Couldn't Guess Your Password");
     }
     return (
         <div>
@@ -44,6 +51,7 @@ const PasswordDemo = () => {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={crackPassword}>Crack Me!</button>
+            <p>{cracked ? "Your password's been cracked!" : 'Good password...within reason'}</p>
         </div>
     );
 }
