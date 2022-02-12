@@ -5,7 +5,7 @@ import {
     uppercaseLetters,
     numbers,
     specialCharacters
-} from './utils/letters';
+} from './utils/characters';
 
 const PasswordDemo = () => {
     const checkCharacters = [
@@ -46,7 +46,7 @@ const PasswordDemo = () => {
             <label htmlFor='pwd'>Password: </label>
             <input
                 id='pwd'
-                type='text'
+                type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
