@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 
+import {
+    lowercaseLetters,
+    uppercaseLetters,
+    numbers,
+    specialCharacters
+} from './utils/letters';
+
 const PasswordDemo = () => {
     const [password, setPassword] = useState('');
+    const checkCharacters = [
+        ...lowercaseLetters,
+        ...uppercaseLetters,
+        ...numbers,
+        ...specialCharacters
+    ];
     const crackPassword = () => {
         const pwdLength = password.length;
-        console.log(pwdLength);
-        for (let i = 0; i < 26; i++) {
-            let firstLetter = String.fromCharCode(97 + i);
-            for (let j = 0; j < 26; j++) {
-                let secondLetter = String.fromCharCode(97 + j);
-                for (let k = 0; k < 26; k++) {
-                    let thirdLetter = String.fromCharCode(97 + k);
+
+        for (let firstLetter of checkCharacters) {
+            for (let secondLetter of checkCharacters) {
+                for (let thirdLetter of checkCharacters) {
                     let passwordGuess = `${firstLetter}${secondLetter}${thirdLetter}`;
                     if (passwordGuess === password) {
                         return console.log(`Your password is: ${passwordGuess}`);
@@ -18,6 +28,7 @@ const PasswordDemo = () => {
                 }
             }
         }
+
         console.log("Couldn't Guess Your Password");
     }
     return (
