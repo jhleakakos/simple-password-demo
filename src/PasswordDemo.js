@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PasswordInput from './PasswordInput';
 
 import {
     lowercaseLetters,
@@ -88,17 +89,11 @@ const PasswordDemo = () => {
     return (
         <div>
             <h1>Simple Password Demo</h1>
-            <p>Your current password is: {password}</p>
-
-            <label htmlFor='pwd'>Password: </label>
-            <input
-                id='pwd'
-                type='text'
-                maxLength='6'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+            <PasswordInput
+                password={password}
+                setPassword={setPassword}
+                crackPassword={crackPassword}
             />
-            <button onClick={crackPassword}>Crack Me!</button>
             <p>{cracked ? "Your password's been cracked!" : 'Good password...within reason'}</p>
             {cracked ? <p>Number of checks to get to your password: {count}</p> : ''}
         </div>
