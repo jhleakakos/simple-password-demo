@@ -22,7 +22,7 @@ const PasswordDemo = () => {
 
     useEffect(() => setCracked(false), [password]);
 
-    const crackPassword = () => {
+    const crackPasswordBruteForce = () => {
         let checkCount = 0;
 
         for (let letter1 of checkCharacters) {
@@ -92,7 +92,7 @@ const PasswordDemo = () => {
             <PasswordInput
                 password={password}
                 setPassword={setPassword}
-                crackPassword={crackPassword}
+                crackPassword={crackPasswordBruteForce}
             />
             <p>{cracked ? "Your password's been cracked!" : 'Good password...within reason'}</p>
             {cracked ? <p>Number of checks to get to your password: {count}</p> : ''}

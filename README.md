@@ -1,5 +1,7 @@
 Small React app to demo how password complexity and length work for basic password security.
 
+List of words for dictionary check comes from [here](http://www-personal.umich.edu/~jlawler/wordlist.html). Removed lines with non-letter characters.
+
 
 
 
