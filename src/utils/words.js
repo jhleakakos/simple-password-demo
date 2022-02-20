@@ -1,4 +1,4 @@
-export const dictionaryWordList = [
+export default [
 'a'
 ,'aardvark'
 ,'aardwolf'
