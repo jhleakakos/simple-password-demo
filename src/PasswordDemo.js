@@ -20,13 +20,21 @@ const PasswordDemo = () => {
 
     const [password, setPassword] = useState('');
     const [cracked, setCracked] = useState(false);
-    const [cracking, setCracking] = useState(false);
+    const [cracking, setCracking] = useState({ current: false, method: '' });
     const [count, setCount] = useState(0);
 
     useEffect(() => setCracked(false), [password]);
+    useEffect(() => {
+        if (cracking.method === 'brute') crackPasswordBruteForce();
+        if (cracking.method === 'dict') crackPasswordDictionary();
+    }, [cracking]);
+
+    const crackPassword = (crackMethod) => {
+        setCracking({ current: true, method: crackMethod });
+        setCracked(false);
+    }
 
     const crackPasswordBruteForce = () => {
-        setCracking(true);
         let checkCount = 0;
 
         for (let letter1 of checkCharacters) {
@@ -35,7 +43,7 @@ const PasswordDemo = () => {
             if (passwordGuess1 === password) {
                 setCount(checkCount);
                 setCracked(true);
-                setCracking(true);
+                setCracking({ current: false, method: '' });
                 return
             }
 
@@ -45,7 +53,7 @@ const PasswordDemo = () => {
                 if (passwordGuess2 === password) {
                     setCount(checkCount);
                     setCracked(true);
-                    setCracking(true);
+                    setCracking({ current: false, method: '' });
                     return
                 }
 
@@ -55,7 +63,7 @@ const PasswordDemo = () => {
                     if (passwordGuess3 === password) {
                         setCount(checkCount);
                         setCracked(true);
-                        setCracking(true);
+                        setCracking({ current: false, method: '' });
                         return
                     }
 
@@ -65,7 +73,7 @@ const PasswordDemo = () => {
                         if (passwordGuess4 === password) {
                             setCount(checkCount);
                             setCracked(true);
-                            setCracking(true);
+                            setCracking({ current: false, method: '' });
                             return
                         }
 
@@ -75,7 +83,7 @@ const PasswordDemo = () => {
                             if (passwordGuess5 === password) {
                                 setCount(checkCount);
                                 setCracked(true);
-                                setCracking(true);
+                                setCracking({ current: false, method: '' });
                                 return
                             }
 
@@ -85,7 +93,7 @@ const PasswordDemo = () => {
                                 if (passwordGuess6 === password) {
                                     setCount(checkCount);
                                     setCracked(true);
-                                    setCracking(true);
+                                    setCracking({ current: false, method: '' });
                                     return
                                 }
                             }
@@ -94,7 +102,7 @@ const PasswordDemo = () => {
                 }
             }
         }
-        setCracking(true);
+        setCracking({ current: false, method: '' });
     }
 
     const crackPasswordDictionary = () => {
@@ -105,28 +113,28 @@ const PasswordDemo = () => {
             if (word === password) {
                 setCount(checkCount);
                 setCracked(true);
-                setCracking(true);
+                setCracking({ current: false, method: '' });
                 return
             }
         }
-        setCracking(true);
+        setCracking({ current: false, method: '' });
     }
 
     return (
-        <div>
+        <>
             <h1>Simple Password Demo</h1>
             <PasswordInput
                 password={ password }
                 setPassword={ setPassword }
-                crackPasswordBruteForce={ crackPasswordBruteForce }
-                crackPasswordDictionary={ crackPasswordDictionary }
+                crackPasswordBruteForce={ () => crackPassword('brute') }
+                crackPasswordDictionary={ () => crackPassword('dict') }
             />
-            <p>{ cracking
+            <p>{ cracking.current
                 ? 'Cracking me some passwords!'
-                : 'You\'ve either been cracked or not. That\'s how life is.'}</p>
-            <p>{ cracked ? 'Your password\'s been cracked!' : 'Good password...within reason' }</p>
+                : 'You\'ve either been cracked or not. That\'s how life is.' }</p>
+            <p>{ cracked && !cracking.current ? 'Your password\'s been cracked!' : 'Good password...within reason' }</p>
             { cracked ? <p>Number of checks to get to your password: { count }</p> : '' }
-        </div>
+        </>
     );
 }
 
