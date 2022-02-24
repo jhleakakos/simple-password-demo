@@ -19,11 +19,15 @@ const PasswordDemo = () => {
     ];
 
     const [password, setPassword] = useState('');
-    const [cracked, setCracked] = useState(false);
-    const [cracking, setCracking] = useState({ current: false, method: '' });
+    const [cracked, setCracked] = useState(null);
+    const [cracking, setCracking] = useState({ current: null, method: '' });
     const [count, setCount] = useState(0);
 
-    useEffect(() => setCracked(false), [password]);
+    useEffect(() => {
+        setCracked(false);
+        setCracking({current: null, method: ''})
+    }, [password]);
+
     useEffect(() => {
         if (cracking.method === 'brute') crackPasswordBruteForce();
         if (cracking.method === 'dict') crackPasswordDictionary();
@@ -129,10 +133,12 @@ const PasswordDemo = () => {
                 crackPasswordBruteForce={ () => crackPassword('brute') }
                 crackPasswordDictionary={ () => crackPassword('dict') }
             />
-            <p>{ cracking.current
-                ? 'Cracking me some passwords!'
-                : 'You\'ve either been cracked or not. That\'s how life is.' }</p>
-            <p>{ cracked && !cracking.current ? 'Your password\'s been cracked!' : 'Good password...within reason' }</p>
+            <p>{ cracking.current === null ? ''
+                : cracking.current ? 'Cracking me some passwords!'
+                : 'All Done Cracking' }</p>
+            <p>{ cracking.current || cracking.current === null ? ''
+                : cracked ? 'Your password\'s been cracked!'
+                    : 'Good password...within reason' }</p>
             { cracked ? <p>Number of checks to get to your password: { count }</p> : '' }
         </>
     );
