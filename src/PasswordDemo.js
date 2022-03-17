@@ -1,22 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PasswordInput from './PasswordInput';
-
-import {
-    lowercaseLetters,
-    uppercaseLetters,
-    numbers,
-    specialCharacters
-} from './utils/characters';
-
-import dictionaryWordList from './utils/words';
+import { crackPasswordBruteForce, crackPasswordDictionary } from './utils/crackPassword';
 
 const PasswordDemo = () => {
-    const checkCharacters = [
-        ...lowercaseLetters,
-        // ...uppercaseLetters,
-        // ...numbers,
-        // ...specialCharacters
-    ];
 
     const [passwordCrackMethod, setPasswordCrackMethod] = useState('brute');
     const [password, setPassword] = useState('');
@@ -30,8 +16,8 @@ const PasswordDemo = () => {
     }, [password]);
 
     useEffect(() => {
-        if (cracking && passwordCrackMethod === 'brute') crackPasswordBruteForce();
-        if (cracking && passwordCrackMethod === 'dict') crackPasswordDictionary();
+        if (cracking && passwordCrackMethod === 'brute') crackPasswordBruteForce(password, setCount, setCracked, setCracking);
+        if (cracking && passwordCrackMethod === 'dict') crackPasswordDictionary(password, setCount, setCracked, setCracking);
     }, [cracking]);
 
     useEffect(() => {
@@ -41,92 +27,6 @@ const PasswordDemo = () => {
     const crackPassword = () => {
         setCracked(false);
         setCracking(true);
-    }
-
-    const crackPasswordBruteForce = () => {
-        let checkCount = 0;
-
-        for (let letter1 of checkCharacters) {
-            checkCount += 1;
-            let passwordGuess1 = letter1;
-            if (passwordGuess1 === password) {
-                setCount(checkCount);
-                setCracked(true);
-                setCracking(false);
-                return
-            }
-
-            for (let letter2 of checkCharacters) {
-                checkCount += 1;
-                let passwordGuess2 = `${ passwordGuess1 }${ letter2 }`;
-                if (passwordGuess2 === password) {
-                    setCount(checkCount);
-                    setCracked(true);
-                    setCracking(false);
-                    return
-                }
-
-                for (let letter3 of checkCharacters) {
-                    checkCount += 1;
-                    let passwordGuess3 = `${ passwordGuess2 }${ letter3 }`;
-                    if (passwordGuess3 === password) {
-                        setCount(checkCount);
-                        setCracked(true);
-                        setCracking(false);
-                        return
-                    }
-
-                    for (let letter4 of checkCharacters) {
-                        checkCount += 1;
-                        let passwordGuess4 = `${ passwordGuess3 }${ letter4 }`;
-                        if (passwordGuess4 === password) {
-                            setCount(checkCount);
-                            setCracked(true);
-                            setCracking(false);
-                            return
-                        }
-
-                        for (let letter5 of checkCharacters) {
-                            checkCount += 1;
-                            let passwordGuess5 = `${ passwordGuess4 }${ letter5 }`;
-                            if (passwordGuess5 === password) {
-                                setCount(checkCount);
-                                setCracked(true);
-                                setCracking(false);
-                                return
-                            }
-
-                            for (let letter6 of checkCharacters) {
-                                checkCount += 1;
-                                let passwordGuess6 = `${ passwordGuess5 }${ letter6 }`;
-                                if (passwordGuess6 === password) {
-                                    setCount(checkCount);
-                                    setCracked(true);
-                                    setCracking(false);
-                                    return
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        setCracking(false);
-    }
-
-    const crackPasswordDictionary = () => {
-        let checkCount = 0;
-
-        for (let word of dictionaryWordList) {
-            checkCount += 1;
-            if (word === password) {
-                setCount(checkCount);
-                setCracked(true);
-                setCracking(false);
-                return
-            }
-        }
-        setCracking(false);
     }
 
     return (
