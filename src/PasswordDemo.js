@@ -57,7 +57,7 @@ const PasswordDemo = () => {
             <p>{ cracking || cracking === null ? ''
                 : cracked ? 'Your password\'s been cracked!'
                     : 'Good password...within reason' }</p>
-            { cracked ? <p>Number of checks to get to your password: { count }</p> : '' }
+            { cracked ? <p>Number of checks to get to your password: { count.toLocaleString() }</p> : '' }
         </>
     );
 }
