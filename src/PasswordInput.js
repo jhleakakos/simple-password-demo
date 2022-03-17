@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PasswordInput = ({ password, setPassword, crackPasswordBruteForce, crackPasswordDictionary }) => {
+const PasswordInput = ({ password, setPassword, crackPassword }) => {
     return (
         <div>
             <p>Your current password is: {password}</p>
@@ -17,8 +17,7 @@ const PasswordInput = ({ password, setPassword, crackPasswordBruteForce, crackPa
                     />
                 </div>
 
-                <button onClick={crackPasswordBruteForce} >Brute Force Crack Me!</button>
-                <button onClick={crackPasswordDictionary}>Dictionary Crack Me!</button>
+                <button onClick={crackPassword} >Crack Me!</button>
             </div>
         </div>
     )
