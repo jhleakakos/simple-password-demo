@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PasswordInput from './PasswordInput';
 import { crackPasswordBruteForce, crackPasswordDictionary } from './utils/crackPassword';
+import './PasswordDemo.css';
 
 const PasswordDemo = () => {
 
@@ -31,21 +32,34 @@ const PasswordDemo = () => {
 
     return (
         <>
-            <h1>Simple Password Demo</h1>
-            <label htmlFor="brute">Brute Force</label>
+            <h1 className="PasswordDemo-header">Simple Password Demo</h1>
+            <label
+                className={ passwordCrackMethod === 'brute' ? 'PasswordDemo-rb-label-checked' : 'PasswordDemo-rb-label' }
+                htmlFor="brute"
+            >Brute Force</label>
             <input
                 type="radio"
                 value="brute"
+                name="crackMethod"
                 id="brute"
                 checked={ passwordCrackMethod === 'brute' }
-                onChange={ () => setPasswordCrackMethod('brute') }/>
+                onChange={ () => setPasswordCrackMethod('brute') }
+                className={ passwordCrackMethod === 'brute' ? 'PasswordDemo-rb-input-checked' : 'PasswordDemo-rb-input' }
+
+            />
             <input
                 type="radio"
                 value="dict"
+                name="crackMethod"
                 id="dict"
                 checked={ passwordCrackMethod === 'dict' }
-                onChange={ () => setPasswordCrackMethod('dict') }/>
-            <label htmlFor="dict">Dictionary</label>
+                onChange={ () => setPasswordCrackMethod('dict') }
+                className={ passwordCrackMethod === 'dict' ? 'PasswordDemo-rb-input-checked' : 'PasswordDemo-rb-input' }
+            />
+            <label
+                className={ passwordCrackMethod === 'dict' ? 'PasswordDemo-rb-label-checked' : 'PasswordDemo-rb-label' }
+                htmlFor="dict"
+            >Dictionary</label>
             <PasswordInput
                 password={ password }
                 setPassword={ setPassword }
