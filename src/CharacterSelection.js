@@ -1,13 +1,15 @@
 import React from 'react';
+import './CharacterSelection.css';
 
 const CharacterSelection = ({ chars, toggleChars }) => {
     return (
         <>
-            <p>Select the characters you want to check against:</p>
-            <div>
-
+            <div className="CharacterSelection-flex">
                 <div>
-                    <label htmlFor="lower">Lowercase Letters</label>
+                    <label
+                        htmlFor="lower"
+                        className={ chars.lower ? 'CharacterSelection-label-checked' : 'CharacterSelection-label' }
+                    >Lowercase Letters</label>
                     <input
                         id="lower"
                         name="lower"
@@ -15,11 +17,15 @@ const CharacterSelection = ({ chars, toggleChars }) => {
                         type="checkbox"
                         checked={ chars.lower }
                         onChange={ () => toggleChars('lower') }
+                        className="CharacterSelection-input"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="upper">Uppercase Letters</label>
+                    <label
+                        htmlFor="upper"
+                        className={ chars.upper ? 'CharacterSelection-label-checked' : 'CharacterSelection-label' }
+                    >Uppercase Letters</label>
                     <input
                         id="upper"
                         name="upper"
@@ -27,11 +33,15 @@ const CharacterSelection = ({ chars, toggleChars }) => {
                         type="checkbox"
                         checked={ chars.upper }
                         onChange={ () => toggleChars('upper') }
+                        className="CharacterSelection-input"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="numbers">Numbers</label>
+                    <label
+                        htmlFor="numbers"
+                        className={ chars.numbers ? 'CharacterSelection-label-checked' : 'CharacterSelection-label' }
+                    >Numbers</label>
                     <input
                         id="numbers"
                         name="numbers"
@@ -39,11 +49,15 @@ const CharacterSelection = ({ chars, toggleChars }) => {
                         type="checkbox"
                         checked={ chars.numbers }
                         onChange={ () => toggleChars('numbers') }
+                        className="CharacterSelection-input"
                     />
                 </div>
 
                 <div>
-                    <label htmlFor="special">Special Characters</label>
+                    <label
+                        htmlFor="special"
+                        className={ chars.special ? 'CharacterSelection-label-checked' : 'CharacterSelection-label' }
+                    >Special Characters</label>
                     <input
                         id="special"
                         name="special"
@@ -51,6 +65,7 @@ const CharacterSelection = ({ chars, toggleChars }) => {
                         type="checkbox"
                         checked={ chars.special }
                         onChange={ () => toggleChars('special') }
+                        className="CharacterSelection-input"
                     />
                 </div>
 

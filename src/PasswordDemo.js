@@ -75,6 +75,7 @@ const PasswordDemo = () => {
                 >
                     Dictionary</label>
             </div>
+            <hr className='PasswordDemo-hr-separator' />
             <CharacterSelection
                 chars={ chars }
                 toggleChars={ toggleChars }

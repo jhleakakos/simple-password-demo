@@ -1,0 +1,31 @@
+.CharacterSelection-label {
+    font-size: 1rem;
+    color: #faf3d3;
+    font-weight: bold;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.CharacterSelection-input {
+    appearance: none;
+}
+
+.CharacterSelection-label-checked {
+    color: #faf3d3;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 0 #44714a;
+    border-bottom: 3px solid #574e23;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.CharacterSelection-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CharacterSelection-flex div:nth-of-type(2n) {
+    margin-top: 4rem;
+}
