@@ -33,33 +33,37 @@ const PasswordDemo = () => {
     return (
         <>
             <h1 className="PasswordDemo-header">Simple Password Demo</h1>
-            <label
-                className={ passwordCrackMethod === 'brute' ? 'PasswordDemo-rb-label-checked' : 'PasswordDemo-rb-label' }
-                htmlFor="brute"
-            >Brute Force</label>
-            <input
-                type="radio"
-                value="brute"
-                name="crackMethod"
-                id="brute"
-                checked={ passwordCrackMethod === 'brute' }
-                onChange={ () => setPasswordCrackMethod('brute') }
-                className={ passwordCrackMethod === 'brute' ? 'PasswordDemo-rb-input-checked' : 'PasswordDemo-rb-input' }
+            <div className="test">
+                <label
+                    className={ passwordCrackMethod === 'brute' ? 'PasswordDemo-rb-label-checked' : 'PasswordDemo-rb-label' }
+                    htmlFor="brute"
+                >
+                    <input
+                        type="radio"
+                        value="brute"
+                        name="crackMethod"
+                        id="brute"
+                        checked={ passwordCrackMethod === 'brute' }
+                        onChange={ () => setPasswordCrackMethod('brute') }
+                        className="PasswordDemo-rb-input"
 
-            />
-            <input
-                type="radio"
-                value="dict"
-                name="crackMethod"
-                id="dict"
-                checked={ passwordCrackMethod === 'dict' }
-                onChange={ () => setPasswordCrackMethod('dict') }
-                className={ passwordCrackMethod === 'dict' ? 'PasswordDemo-rb-input-checked' : 'PasswordDemo-rb-input' }
-            />
-            <label
-                className={ passwordCrackMethod === 'dict' ? 'PasswordDemo-rb-label-checked' : 'PasswordDemo-rb-label' }
-                htmlFor="dict"
-            >Dictionary</label>
+                    />
+                    Brute Force</label>
+                <label
+                    className={ passwordCrackMethod === 'dict' ? 'PasswordDemo-rb-label-checked' : 'PasswordDemo-rb-label' }
+                    htmlFor="dict"
+                >
+                    <input
+                        type="radio"
+                        value="dict"
+                        name="crackMethod"
+                        id="dict"
+                        checked={ passwordCrackMethod === 'dict' }
+                        onChange={ () => setPasswordCrackMethod('dict') }
+                        className="PasswordDemo-rb-input"
+                    />
+                    Dictionary</label>
+            </div>
             <PasswordInput
                 password={ password }
                 setPassword={ setPassword }
