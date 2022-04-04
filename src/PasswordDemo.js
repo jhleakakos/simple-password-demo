@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PasswordInput from './PasswordInput';
+import CharacterSelection from './CharacterSelection';
 import { crackPasswordBruteForce, crackPasswordDictionary } from './utils/crackPassword';
 import './PasswordDemo.css';
 
@@ -10,6 +11,12 @@ const PasswordDemo = () => {
     const [cracked, setCracked] = useState(null);
     const [cracking, setCracking] = useState(null);
     const [count, setCount] = useState(0);
+    const [chars, setChars] = useState({
+        lower: true,
+        upper: false,
+        numbers: false,
+        special: false
+    });
 
     useEffect(() => {
         setCracked(false);
@@ -28,6 +35,10 @@ const PasswordDemo = () => {
     const crackPassword = () => {
         setCracked(false);
         setCracking(true);
+    }
+
+    const toggleChars = (char) => {
+        setChars({ ...chars, [char]: !(chars[char]) });
     }
 
     return (
@@ -64,6 +75,10 @@ const PasswordDemo = () => {
                 >
                     Dictionary</label>
             </div>
+            <CharacterSelection
+                chars={ chars }
+                toggleChars={ toggleChars }
+            />
             <PasswordInput
                 password={ password }
                 setPassword={ setPassword }
