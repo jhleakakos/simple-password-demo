@@ -33,7 +33,7 @@ const PasswordDemo = () => {
     return (
         <>
             <h1 className="PasswordDemo-header">Simple Password Demo</h1>
-            <div className="test">
+            <div className="PasswordDemo-input-flex">
                 <label
                     className={ passwordCrackMethod === 'brute' ? 'PasswordDemo-rb-label-checked' : 'PasswordDemo-rb-label' }
                     htmlFor="brute"
