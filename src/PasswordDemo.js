@@ -3,8 +3,10 @@ import PasswordInput from './PasswordInput';
 import CharacterSelection from './CharacterSelection';
 import { crackPasswordBruteForce, crackPasswordDictionary } from './utils/crackPassword';
 import './PasswordDemo.css';
+import { lowercaseLetters, uppercaseLetters, numbers, specialCharacters } from './utils/characters';
 
 const PasswordDemo = () => {
+
 
     const [passwordCrackMethod, setPasswordCrackMethod] = useState('brute');
     const [password, setPassword] = useState('');
@@ -18,14 +20,21 @@ const PasswordDemo = () => {
         special: false
     });
 
+    const checkCharacters = [
+        ...(chars.lower ? lowercaseLetters : []),
+        ...(chars.upper ? uppercaseLetters : []),
+        ...(chars.numbers ? numbers : []),
+        ...(chars.special ? specialCharacters : [])
+    ];
+
     useEffect(() => {
         setCracked(false);
         setCracking(null)
     }, [password]);
 
     useEffect(() => {
-        if (cracking && passwordCrackMethod === 'brute') crackPasswordBruteForce(password, setCount, setCracked, setCracking);
-        if (cracking && passwordCrackMethod === 'dict') crackPasswordDictionary(password, setCount, setCracked, setCracking);
+        if (cracking && passwordCrackMethod === 'brute') crackPasswordBruteForce(password, setCount, setCracked, setCracking, checkCharacters);
+        if (cracking && passwordCrackMethod === 'dict') crackPasswordDictionary(password, setCount, setCracked, setCracking, checkCharacters);
     }, [cracking]);
 
     useEffect(() => {
@@ -75,16 +84,20 @@ const PasswordDemo = () => {
                 >
                     Dictionary</label>
             </div>
-            <hr className='PasswordDemo-hr-separator' />
+
+            <hr className="PasswordDemo-hr-separator"/>
+
             <CharacterSelection
                 chars={ chars }
                 toggleChars={ toggleChars }
             />
+
             <PasswordInput
                 password={ password }
                 setPassword={ setPassword }
                 crackPassword={ crackPassword }
             />
+
             <p>{ cracking === null ? ''
                 : cracking ? 'Cracking me some passwords!'
                     : 'All Done Cracking' }</p>

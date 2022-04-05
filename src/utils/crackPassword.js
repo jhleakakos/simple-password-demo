@@ -1,20 +1,6 @@
-import {
-    lowercaseLetters,
-    uppercaseLetters,
-    numbers,
-    specialCharacters
-} from './characters';
-
 import dictionaryWordList from './words';
 
-const checkCharacters = [
-    ...lowercaseLetters,
-    // ...uppercaseLetters,
-    // ...numbers,
-    // ...specialCharacters
-];
-
-const crackPasswordBruteForce = (password, setCount, setCracked, setCracking) => {
+const crackPasswordBruteForce = (password, setCount, setCracked, setCracking, checkCharacters) => {
     let checkCount = 0;
 
     for (let letter1 of checkCharacters) {
