@@ -92,6 +92,10 @@ const PasswordDemo = () => {
                 toggleChars={ toggleChars }
             />
 
+            <div className='PasswordDemo-display-chars'>
+                { (checkCharacters.toString()).replaceAll(',', '') }
+            </div>
+
             <PasswordInput
                 password={ password }
                 setPassword={ setPassword }
