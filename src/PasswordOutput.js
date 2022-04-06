@@ -7,8 +7,8 @@ const PasswordOutput = ({ cracking, cracked, count }) => {
             <p>Number of checks to get to your password: <span>
                 { cracked ? count.toLocaleString()
                     : cracking
-                        ? 'hang one one moment while we crack this password'
-                        : 'more than we tried'
+                        ? 'Hang on one moment while we crack this password'
+                        : 'More than we tried'
                 }
             </span>< /p>
         </div>

@@ -1,23 +1,40 @@
+# Simple Password Demo
+
 Small React app to demo how password complexity and length work for basic password security.
 
-List of words for dictionary check comes from [here](http://www-personal.umich.edu/~jlawler/wordlist.html). Removed lines with non-letter characters.
+List of words for dictionary check comes from [here](http://www-personal.umich.edu/~jlawler/wordlist.html). Removed
+lines with non-letter characters.
 
+<p align="center"><img src="readme_img/app_at_start.png" width="70%" height="auto" alt="Start of app"></p>
 
+<p style="display: flex; justify-content: space-around;">
+<img src="readme_img/app_while_cracking_password.png" width="47%" height="auto" alt="App while cracking a password">
+<img src="readme_img/crack_success.png" width="47%" height="auto" alt="App after successfully cracking password">
+</p>
 
+You can choose between two attack methods:
 
+- Brute Force: checks all combinations of check characters up to six total characters in password
+- Dictionary: checks against list of words in /src/utils/words.js
 
-# Getting Started with Create React App
+You control which characters are used by toggling the four check character options:
+
+- Lowercase Letters
+- Uppercase Letters
+- Numbers
+- Special Characters
+
+You can see an output of the current set of check characters below the toggles for them.
+
+Input a password, select your cracking method, pick the right check characters, input a password, and hit Crack Me! to
+check it out.
+
+## Subset of React Boilerplate
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+In the project directory, you can run the app in development mode with:
 
-In the project directory, you can run:
+`npm start`
 
-### `npm start`
-
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
