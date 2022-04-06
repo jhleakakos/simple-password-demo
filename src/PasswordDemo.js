@@ -4,6 +4,7 @@ import CharacterSelection from './CharacterSelection';
 import { crackPasswordBruteForce, crackPasswordDictionary } from './utils/crackPassword';
 import './PasswordDemo.css';
 import { lowercaseLetters, uppercaseLetters, numbers, specialCharacters } from './utils/characters';
+import PasswordOutput from './PasswordOutput';
 
 const PasswordDemo = () => {
 
@@ -92,7 +93,7 @@ const PasswordDemo = () => {
                 toggleChars={ toggleChars }
             />
 
-            <div className='PasswordDemo-display-chars'>
+            <div className="PasswordDemo-display-chars">
                 { (checkCharacters.toString()).replaceAll(',', '') }
             </div>
 
@@ -102,13 +103,11 @@ const PasswordDemo = () => {
                 crackPassword={ crackPassword }
             />
 
-            <p>{ cracking === null ? ''
-                : cracking ? 'Cracking me some passwords!'
-                    : 'All Done Cracking' }</p>
-            <p>{ cracking || cracking === null ? ''
-                : cracked ? 'Your password\'s been cracked!'
-                    : 'Good password...within reason' }</p>
-            { cracked ? <p>Number of checks to get to your password: { count.toLocaleString() }</p> : '' }
+            <PasswordOutput
+                cracking={ cracking }
+                cracked={ cracked }
+                count={ count }
+            />
         </>
     );
 }

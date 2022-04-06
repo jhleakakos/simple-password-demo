@@ -1,6 +1,7 @@
 import React from 'react';
 import './PasswordInput.css';
 
+// const PasswordInput = ({ password, setPassword, crackPassword }) => {
 const PasswordInput = ({ password, setPassword, crackPassword }) => {
     return (
         <div>
