@@ -29,9 +29,18 @@ You can see an output of the current set of check-characters below the toggles f
 Input a password, select your cracking method, pick the right check-characters, input a password, and hit Crack Me! to
 check it out.
 
+## Dependencies
+
+You will need to install:
+
+- [Node](https://nodejs.org)
+- [NPM](https://www.npmjs.com) (if you didn't install with Node)
+
 Make sure to run
 
-```npm install```
+```
+npm install
+```
 
 after you clone the repository.
 
